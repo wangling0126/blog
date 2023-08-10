@@ -1,0 +1,47 @@
+<video src="./movie.mp4" id="video" controls hidden></video>
+<canvas id="canvas" width="500" height="500" style="background-color: #efefea;"></canvas>
+<button id="btn">点击开始播放/暂停</button>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d');
+    const video = document.getElementById('video');
+    // 添加水印
+    const watermark = new Image();
+    watermark.src = './win.png';
+
+    // 绘制动画
+    function render() {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(watermark, 10, 10, watermark.width, watermark.height)
+        requestAnimationFrame(render)
+    }
+    video.addEventListener('loadedmetadata', function () {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        document.getElementById('btn').onclick = function () {
+            if (video.paused) {
+                video.play()
+                render()
+            } else {
+                video.pause()
+            }
+        }
+    })
+    // 视频结束事件
+    // video.addEventListener('ended', () => {
+    //     // 将canvas转为视频blob
+    //     canvas.toBlob(blob => {
+    //         console.log(blob)
+    //         // 生成一个URL
+    //         const url = URL.createObjectURL(blob);
+
+    //         // 创建a标签用于下载
+    //         const a = document.createElement('a');
+    //         a.href = url;
+    //         a.download = 'myvideo.webm';
+    //         a.click();
+    //     }, 'video/webm');
+
+    // });
+</script>

@@ -1,0 +1,26 @@
+<canvas id="canvas" width="500" height="500" style="background-color: #efefea;"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d');
+
+    // 1. 填充型绘制矩形
+    // ctx.fillRect(x, y, width, height);
+    ctx.fillRect(100, 100, 50, 50);
+    console.log(ctx)
+
+    // 2. 线条型
+    ctx.strokeRect(100, 200, 50, 50);
+
+    // 3.清除指定区域
+    // clearRect(x, y, width, height)
+    ctx.clearRect(100, 100, 20, 20);
+
+    // 4. rect(x, y, width, height) 
+    // 创建矩形路径,需要配合fill()或stroke()来绘制。
+    ctx.rect(100, 260, 50, 50);
+    ctx.fill();
+
+    // 
+    ctx.rect(100, 320, 50, 50);
+    ctx.stroke();
+</script>

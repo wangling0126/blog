@@ -1,0 +1,35 @@
+<canvas id="canvas" width="500" height="500" style="background-color: #efefea;"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d');
+    // 设置笑脸的相关参数
+    const faceRadius = 200;
+    const eyeRadius = 50;
+    const mouthWidth = 150;
+    const mouthHeight = 100;
+
+    // 笑脸中心位置
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // 绘制大圆作为脸
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, faceRadius, 0, 2 * Math.PI);
+    ctx.fillStyle = 'yellow';
+    ctx.fill();
+
+    // 绘制眼睛
+    ctx.beginPath();
+    ctx.arc(centerX - 90, centerY - 60, eyeRadius, 0, 2 * Math.PI);
+    ctx.arc(centerX + 90, centerY - 60, eyeRadius, 0, 2 * Math.PI);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+
+    // 绘制嘴巴
+    ctx.beginPath();
+    ctx.arc(centerX, centerY + 40, mouthWidth, 0, Math.PI);
+    ctx.lineTo(centerX, centerY + mouthHeight);
+    ctx.lineTo(centerX + mouthWidth, centerY + 40);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+</script>

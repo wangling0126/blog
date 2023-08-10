@@ -1,0 +1,96 @@
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<canvas id="canvas" width="800" height="600" style="background-color: #efefea;"></canvas>
+<script>
+    const canvas = document.getElementById('canvas')
+    const context = canvas.getContext('2d');
+    const canvasWidth = canvas.width
+    const canvasHeight = canvas.height
+
+    function render() {
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        context.save()
+        context.translate(canvasWidth / 2, canvasHeight / 2);
+        context.rotate(-90 * Math.PI / 180);
+        context.save()
+        // 绘制小时的刻度
+        for (let i = 0; i < 12; i++) {
+            context.beginPath();
+            context.moveTo(170, 0);
+            context.lineTo(190, 0);
+            context.lineWidth = 8;
+            context.strokeStyle = 'gray';
+            context.stroke();
+            context.closePath();
+            context.rotate(2 * Math.PI / 12)
+        }
+        context.restore();
+        context.save();
+        // 绘制分钟线
+        for (let i = 0; i < 60; i++) {
+            context.beginPath();
+            context.moveTo(180, 0);
+            context.lineTo(190, 0);
+            context.lineWidth = 2;
+            context.strokeStyle = 'gray';
+            context.stroke();
+            context.closePath();
+            context.rotate(2 * Math.PI / 60)
+        }
+        context.restore();
+        context.save();
+
+        //  获取当前时间
+        const time = new Date()
+        let hour = time.getHours()
+        const min = time.getMinutes()
+        const sec = time.getSeconds()
+        hour = hour > 12 ? hour - 12 : hour
+
+        // 绘制秒针
+        context.rotate(2 * Math.PI / 60 * sec)
+        context.beginPath();
+        context.moveTo(-30, 0);
+        context.lineTo(160, 0);
+        context.lineWidth = 2;
+        context.strokeStyle = 'red';
+        context.stroke();
+        context.closePath();
+        context.rotate(2 * Math.PI / 60)
+        context.restore();
+        context.save();
+
+        // 绘制分钟
+        context.rotate(2 * Math.PI / 60 * min + 2 * Math.PI / 60 / 60 * sec)
+        context.beginPath();
+        context.moveTo(-20, 0);
+        context.lineTo(130, 0);
+        context.lineWidth = 4;
+        context.strokeStyle = '#888';
+        context.stroke();
+        context.closePath();
+        context.rotate(2 * Math.PI / 60)
+        context.restore();
+        context.save();
+
+        // 绘制小时
+        context.rotate(2 * Math.PI / 12 * hour + 2 * Math.PI / 12 / 60 * min)
+        context.beginPath();
+        context.moveTo(-10, 0);
+        context.lineTo(60, 0);
+        context.lineWidth = 4;
+        context.strokeStyle = '#333';
+        context.stroke();
+        context.closePath();
+        context.rotate(2 * Math.PI / 60)
+        context.restore();
+        context.restore();
+        requestAnimationFrame(render)
+    }
+    render()
+</script>
