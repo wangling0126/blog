@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<body>
+</body>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+
+    }
+</style>
+<script src="https://pixijs.download/release/pixi.js"></script>
+
+<script>
+    const { Application } = window.PIXI;
+
+    const app = new Application({
+        resizeTo: window,
+        autoDensity: true,
+        // 背景颜色
+        backgroundColor: 0x6495ed,
+
+    });
+    document.body.appendChild(app.view);
+
+    const container = new PIXI.Container()
+    app.stage.addChild(container);
+
+
+    // 添加纹理 
+    const texture = PIXI.Texture.from('./example/assets/bunny.png');
+    // 使用纹理生成精灵
+    const sprite = new PIXI.Sprite(texture);
+
+    // Create a 5x5 grid of bunnies
+    for (let i = 0; i < 25; i++) {
+        const bunny = new PIXI.Sprite(texture);
+        bunny.anchor.set(1);
+        bunny.x = (i % 5) * 40;
+        bunny.y = Math.floor(i / 5) * 40;
+        container.addChild(bunny);
+    }
+
+    // 移动container的位置 - 移动了后发现靠右偏下
+    // container.position.set(window.innerWidth / 2, window.innerHeight / 2)
+    container.x = app.screen.width / 2;
+    container.y = app.screen.height / 2;
+
+    // 设置到容器中心
+    container.pivot.x = container.width / 2;
+    container.pivot.y = container.height / 2;
+
+    app.ticker.add((delta) => {
+        container.rotation -= 0.01 * delta;
+    })
+</script>

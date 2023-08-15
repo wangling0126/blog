@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<body>
+</body>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+
+    }
+</style>
+<script src="https://pixijs.download/release/pixi.js"></script>
+
+<script>
+    const { Application } = window.PIXI;
+    console.log(Application)
+
+    const app = new Application({
+        // 应用程序宽
+        width: window.innerWidth,
+        // 应用程序高
+        height: window.innerHeight,
+        // 背景颜色
+        backgroundColor: 0x6495ed,
+        // 分辨率参数
+        resolution: window.devicePixelRatio || 2,
+        // 是否自动处理像素比,默认是true
+        autoDensity: true
+    });
+    document.body.appendChild(app.view);
+</script>

@@ -11,3 +11,10 @@
 - 给图片添加水印
 - 基本的画图
 - canvas实现图表
+
+
+
+### [pixijs](./pixijs/pixijs-demo/readme.md)
+
+- [pixijs初体验](https://pixijs.io/examples/#/tweedle/easings.js)
+

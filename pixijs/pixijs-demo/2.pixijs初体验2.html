@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<body>
+</body>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+
+    }
+</style>
+<script src="https://pixijs.download/release/pixi.js"></script>
+<script>
+
+    const { Application,
+        Graphics,
+        Sprite,
+        Text, } = window.PIXI;
+
+    const app = new Application({
+        backgroundColor: 0x6495ed,
+        // 调整渲染器的大小以适应窗口大小变化
+        resizeTo: window
+    });
+    document.body.appendChild(app.view);
+
+    // 创建文本成员
+    const slogan = new Text('Hello, developer!', {
+        fill: 0xffffff,
+        fontSize: 32,
+    });
+    slogan.position.set(20, 20);
+
+    // 创建图形成员
+    const sloganBg = new Graphics();
+    sloganBg.position.set(10, 10);
+    sloganBg.lineStyle(4, 0x333333, .25);
+    sloganBg.beginFill(0xefefef, .5);
+    sloganBg.drawRoundedRect(0, 0, slogan.width + 20, slogan.height + 20, 10);
+    sloganBg.endFill();
+
+    app.stage.addChild(slogan, sloganBg);
+
+    // 创建精灵成员
+    const sprite = Sprite.from('https://hk.krimeshu.com/public/images/sprite-minion.png');
+    sprite.anchor.set(0.5, 0.5);
+    sprite.position.set(app.screen.width / 2, app.screen.height / 2);
+
+    app.stage.addChild(sprite);
+
+</script>

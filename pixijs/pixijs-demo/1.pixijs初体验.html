@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<body>
+</body>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+
+    }
+</style>
+<script src="https://pixijs.download/release/pixi.js"></script>
+
+<script>
+    const { Application } = window.PIXI;
+    console.log(Application)
+
+    const app = new Application({
+        width: window.innerWidth - 4,
+        height: window.innerHeight - 4,
+        backgroundColor: 0x6495ed,
+    });
+    document.body.appendChild(app.view);
+</script>

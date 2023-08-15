@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<body>
+</body>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+
+    }
+</style>
+<script src="https://pixijs.download/release/pixi.js"></script>
+
+<script>
+    const { Application } = window.PIXI;
+
+    const app = new Application({
+        resizeTo: window,
+        autoDensity: true,
+        // 背景颜色
+        backgroundColor: 0x6495ed,
+
+    });
+    document.body.appendChild(app.view);
+</script>

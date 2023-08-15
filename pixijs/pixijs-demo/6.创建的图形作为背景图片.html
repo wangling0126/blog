@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<style>
+    canvas {
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #font-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+</style>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="font-box">
+        <div>这是文字</div>
+        <div>hahha</div>
+    </div>
+</body>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+    }
+</style>
+<script src="https://pixijs.download/release/pixi.js"></script>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const { Application } = window.PIXI;
+
+    const app = new Application({
+        view: canvas,
+        resizeTo: window,
+        autoDensity: true,
+        // 背景颜色
+        backgroundColor: 0x6495ed,
+
+    });
+    // document.body.appendChild(app.view);
+
+    // create a new Sprite from an image path.
+    const bunny = PIXI.Sprite.from("./example/assets/bunny.png");
+
+    // center the sprite's anchor point
+    bunny.anchor.set(0.5);
+
+    // move the sprite to the center of the screen
+    bunny.x = app.screen.width / 2;
+    bunny.y = app.screen.height / 2;
+
+    app.stage.addChild(bunny);
+
+    app.ticker.add(() => {
+        // just for fun, let's rotate mr rabbit a little
+        bunny.rotation += 0.04;
+    });
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<body>
+</body>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+
+    }
+</style>
+<script src="https://pixijs.download/release/pixi.js"></script>
+
+<script>
+    const { Application } = window.PIXI;
+
+    const app = new Application({
+        resizeTo: window,
+        autoDensity: true,
+        // 背景颜色
+        backgroundColor: 0x6495ed,
+
+    });
+    document.body.appendChild(app.view);
+    // 添加纹理 
+    const texture = PIXI.Texture.from('./example/assets/bunny.png');
+    // 使用纹理生成精灵
+    const sprite = new PIXI.Sprite(texture);
+    console.dir(sprite)
+    // 设置精灵在中间位置
+    sprite.position.set(window.innerWidth / 2, window.innerHeight / 2)
+    // 放大5倍
+    sprite.scale.set(5)
+
+    /**
+     * 在 PixiJS 中,精灵Sprite的anchor属性用于设置精灵的锚点,它会影响精灵的旋转、缩放等转换的中心点。
+        anchor的使用方法如下:
+        anchor的默认值是(0,0),表示精灵的左上角。
+        anchor的值范围是0到1,按精灵宽高的百分比设置。
+    */
+    // 设置到精灵中心点 0 
+    sprite.anchor.set(0.5, 0.5);
+    // 设置精灵透明度
+    sprite.alpha = 0.5
+    // 旋转精灵
+    // 旋转90度
+    // sprite.rotation = Math.PI / 2;
+    // 第二种旋转
+    // sprite.angle = 45
+    // 开启交互
+    sprite.interactive = true;
+    sprite.on('click', function (e) {
+        console.log('鼠标点击了')
+        sprite.alpha = sprite.alpha === 1 ? 0.5 : 1
+    })
+    app.ticker.add((delta) => {
+        // rotate the container!
+        // use delta to create frame-independent transform
+        sprite.rotation -= 0.01 * delta;
+    })
+    app.stage.addChild(sprite)
+
+</script>
